@@ -1,0 +1,59 @@
+---
+title: "My Big Report"
+author: "Kate Baker"
+date: "6/24/2021"
+output: html_document
+bibliography: bibliography.bib
+---
+
+```{r, include=FALSE, echo = TRUE, eval = TRUE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               echo = TRUE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE)
+```
+
+
+```{r, echo=FALSE}
+library(dplyr)
+smoke <- c(TRUE, TRUE, TRUE, TRUE, TRUE,
+           TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE)
+age <- c(35, 21, 20, 48, 20, 20, 22, 19, 19, 20, 19, 18, 24, 22, 22, 19, 21, 19, 21)
+people <- data.frame(smoke, age)
+people <- people %>%
+  filter(age <= 34)
+
+obs <- nrow(people)
+```
+
+# Introduction
+everyone knows that putting plants in place of wet floor signs is the best thing to do if the water spills. 
+
+# Background 
+
+## Methods
+My esteemed colleagues and I surveyed `r obs` people. The average age of the participants is `r round(mean(people$age))` years. This is a very _young_. **Right?**
+
+# **Results**
+
+the below chart shoes the age of the participants. 
+
+```{r, echo=FALSE}
+library(ggplot2)
+ggplot(data = people,
+       aes(x = age,
+           y = smoke))+
+  geom_boxplot()
+
+```
+
+# Conclusion
+
+some people have smoked, and others have not. Smoking is bad. Everyone know that math is hard [@Rudd2014]. And the [@Peterman2005] has an interesting idea about drinking. 
+
+
+
+
